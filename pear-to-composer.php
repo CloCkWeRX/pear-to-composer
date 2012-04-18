@@ -36,10 +36,13 @@ foreach ($document->dependencies->required->php as $dep) {
     // Yeah, probably wrong.
     $composer['require']['php'] = '>=' . (string)$dep->min;
 }
-foreach ($document->dependencies->optional->package as $dep) {
-    $composer['suggest'][(string)$dep->channel . '/' . (string)$dep->name] = "Optionally uses " . $dep->min;
+if (!empty($document->dependencies->optional->package)) {
+    foreach ($document->dependencies->optional->package as $dep) {
+        $composer['suggest'][(string)$dep->channel . '/' . (string)$dep->name] = "Optionally uses " . $dep->min;
+    }
 }
 
+$composer['autoload']['psr-0'][(string)$document->name] = "";
 
 //print json_encode($composer, JSON_PRETTY_PRINT)."\n";
 print json_encode($composer)."\n";
