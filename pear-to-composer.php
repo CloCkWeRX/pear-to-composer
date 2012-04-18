@@ -7,7 +7,10 @@ $document = simplexml_load_file($package_file);
 
 $composer = array();
 
-$composer['name'] = (string)$document->channel . '/' . (string)$document->name;
+/** @todo Use channel-discover to find the channel alias */
+$vendor = (string)$document->channel == 'pear.php.net' ? 'pear' : (string)$document->channel;
+
+$composer['name'] =  $vendor . '/' . (string)$document->name;
 $composer['description'] = (string)$document->description;
 $composer['version'] = (string)$document->version->release;
 $composer['time'] = (string)$document->date;
@@ -38,7 +41,8 @@ foreach ($document->dependencies->required->php as $dep) {
 }
 if (!empty($document->dependencies->optional->package)) {
     foreach ($document->dependencies->optional->package as $dep) {
-        $composer['suggest'][(string)$dep->channel . '/' . (string)$dep->name] = "Optionally uses " . $dep->min;
+        $vendor = (string)$dep->channel == 'pear.php.net' ? 'pear' : (string)$dep->channel;
+        $composer['suggest'][ $vendor . '/' . (string)$dep->name] = "Optionally uses " . $dep->min;
     }
 }
 
