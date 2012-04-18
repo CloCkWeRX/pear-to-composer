@@ -1,5 +1,5 @@
 <?php
-$package_file = dirname(__FILE__) . '/package.xml-test';
+$package_file = 'package.xml';
 
 
 // TODO: Consider a proper API, ie: PEAR_PackageFileManager2 for later.
