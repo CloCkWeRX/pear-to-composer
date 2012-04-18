@@ -21,9 +21,8 @@ Validation via composer with a dry-run
 TODO
 ----
  * Fully cover all package 2.0 elements
- * Work out the PHP deps, pecl deps, etc
+ * Work out the pecl deps, etc
  * Handle min, max version indicators
  * Consider detecting if there are phpunit flavoured tests and rendering require-dev bits
- * Consider if channel = pear.php.net, automagically stating the github and pear URIs
-
+ * Consider adding the github hook if there's a repo, or to that in a pear-svn-git hook adding thing
 
